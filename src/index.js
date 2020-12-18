@@ -1,8 +1,8 @@
 const quoteList = document.querySelector('#quote-list')
 
-load_quotes()
+loadQuotes()
 
-function load_quotes(){
+function loadQuotes(){
     
     fetch("http://localhost:3000/quotes?_embed=likes")
     .then(res => res.json())
@@ -45,7 +45,7 @@ function addQuote(quote) {
         }
         fetch("http://localhost:3000/likes", configObj)
         .then(res => res.json())
-        .then(load_quotes())
+        .then(loadQuotes())
     })
 
     let button2 = document.createElement('button')
@@ -82,5 +82,5 @@ function postQuote(event){
         })
     })
     .then(response => response.json())
-    .then(quoteObj => renderQuote(quoteObj))
+    .then(quoteObj => addQuote(quoteObj))
 }
